@@ -1,0 +1,29 @@
+{% extends 'Student/layout.html' %}
+
+{% block content %}
+    <div class="card w-50 text-center mx-auto mt-5 mb-5">
+        <div class="card-header">
+            <h4>Login Form</h4>
+        </div>
+        <div class="card-body">
+            <form method="POST" class="form text-center">
+                {%  csrf_token %}
+                <div class="form-group">
+                    {{ form.non_field_errors }}
+                    <div class="row fieldWrapper mb-2">
+                        <span class="mx-auto" style="list-style-type:none;color:red">{{ form.username.errors }}</span>
+                        <div class="col-md-3 text-capitalize"><label for="{{ form.username.id_for_label }}">Username:</label></div>
+                        <div class="col-md-8 mr-4">{{ form.username }}</div>
+                    </div>
+                    <div class="row fieldWrapper mb-2">
+                        <span class="mx-auto" style="list-style-type:none;color:red">{{ form.password.errors }}</span>
+                        <div class="col-md-3  text-capitalize"><label for="{{ form.password.id_for_label }}">Password:</label></div>
+                        <div class="col-md-8 mr-4">{{ form.password}}</div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary mb-3" value="Login"/>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

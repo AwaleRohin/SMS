@@ -1,0 +1,21 @@
+{% extends 'Student/layout.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-4">
+        <div class="row mx-auto">
+                <div class="col-md-9 mx-auto mt-5">
+                    <table class="table table-bordered" >
+                    <th>Name</th>
+                    <th>Summary</th>
+                    {% for assi in course %}
+                        <tr>
+                            <td> {{ assi.name }}</td>
+                            <td> {{ assi.summary }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </div>
+
+        </div>
+    </div>
+{% endblock %}

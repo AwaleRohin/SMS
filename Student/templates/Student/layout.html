@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SMS</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="{% static 'js/popper.min.js' %}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- header section -->
+	<div class="navbar bg-default">
+			<!-- logo -->
+			<a href="/" class="site-logo"><h4 style="color:coral">SMS</h4></a>
+{#			<div class="nav-switch">#}
+{#				<i class="fa fa-bars"></i>#}
+{#			</div>#}
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<i class="nav-link fa fa-envelope" style="color:coral"></i>&nbsp;<span class="text-primary">rohinawlae331@gmail.com</span>&nbsp;&nbsp;
+                    <i class="nav-link fa fa-map-marker" style="color:coral"></i>&nbsp;<span class="text-primary">MangalBazar, Lalitpur, Nepal</span>
+				</li>
+			</ul>
+	</div>
+	<!-- header section end-->
+
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand text-primary" href="/"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <!-- Right side of navbar-->
+
+            <ul class="navbar-nav ml-auto text-primary">
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/"><i class="nav-link fa fa-home" style="color:coral"></i>&nbsp;Home<span class="sr-only">(current)</span></a>
+                </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="color:coral" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hi {{ user.username }}!
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
+                            </div>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item text-primary ">
+                        <a class="nav-link text-primary" href="{% url 'login' %} "><i class="nav-link fa fa-sign-in" style="color:coral"></i>&nbsp;Login <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="{% url 'register'  %}"><i class="nav-link fa fa-user-plus" style="color:coral"></i>&nbsp;Register <span class="sr-only"></span></a>
+                    </li>
+
+                {% endif  %}
+            </ul>
+            <!-- Right side of navbar-->
+
+        </div>
+    </nav>
+
+    <!-- navigation bar end-->
+    {% if messages %}
+        <div class="'alert alert-warning alert-dismissible fade show text-center" role="'alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

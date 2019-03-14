@@ -1,0 +1,38 @@
+{% extends 'Student/layout.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-4">
+        <div class="row mx-auto">
+                <div class="col-md-9 mx-auto mt-5">
+                    <table class="table table-bordered" >
+                    <th>Assignment/s</th>
+                    <th>Course</th>
+                    <th>Assignment File</th>
+                    <th>Submission Date</th>
+                    {% for assi in assign %}
+                        {% if user.is_staff %}
+                            <tr>
+                                <td> {{ assi.name }}</td>
+                                <td> {{ assi.course }}</td>
+                                <td> <a href="{{ assi.file.url }}" target="_blank">{{ assi.file }}</a></td>
+                                <td> {{ assi.due_date }}</td>
+                            </tr>
+                        {% else %}
+                            {% for course in profile.course.values %}
+                                {% if assi.course_id == course.id %}
+                                    <tr>
+                                        <td> {{ assi.name }}</td>
+                                        <td> {{ assi.course }}</td>
+                                        <td> <a href="{{ assi.file.url }}" target="_blank">{{ assi.file }}</a></td>
+                                        <td> {{ assi.due_date }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    </table>
+                </div>
+
+        </div>
+    </div>
+{% endblock %}

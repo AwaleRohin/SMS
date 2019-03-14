@@ -1,0 +1,76 @@
+{% extends 'Student/layout.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-4">
+        {% if profile %}
+            <div class="row mx-auto">
+                <div class="col-md-3 mx-auto">
+                    <image src="{{ profile.picture.url }}"   class="rounded-circle" width="300" height="300"/>
+                </div>
+                <div class="col-md-4 mx-auto mt-5">
+                    <p>Name : {{ profile.first_name }}&nbsp;{{ profile.last_name }}</p>
+                    <p>Email : {{ profile.email }}</p>
+                    <p>Program : {{ profile.program }}</p>
+                    <P>Level : {{ profile.level }}</P>
+                    <p>Semester : {{ profile.semester }} </p>
+                    <p>Course : {% for course in profile.course.values %}
+                        {{ course.name }};
+                    {% endfor %}</p>
+                    <p><a href="{% url 'profile_edit' %} " class="btn btn-info">Edit</a> </p>
+                </div>
+            </div>
+        {% else %}
+            <div class="row mx-auto">
+                <div class="card w-50 text-center mx-auto mt-5">
+                    <div class="card-header">
+                        <h4>Create New Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" class="post-form form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.non_field_errors }}
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.first_name.errors }}</span>
+                                    <div class="col-md-3  text-capitalize"><label for="{{ form.first_name.id_for_label }}">First Name:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.first_name }}</div>
+                                </div>
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.last_name.errors }}</span>
+                                    <div class="col-md-3 text-capitalize"><label for="{{ form.last_name.id_for_label }}">Last Name:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.last_name }}</div>
+                                </div>
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.email.errors }}</span>
+                                    <div class="col-md-3 text-capitalize"><label for="{{ form.email.id_for_label }}">Email address:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.email }}</div>
+                                </div>
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.picture.errors }}</span>
+                                    <div class="col-md-3  text-capitalize"><label for="{{ form.picture.id_for_label }}">Picture:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.picture}}</div>
+                                </div>
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.program.errors }}</span>
+                                    <div class="col-md-3  text-capitalize"><label for="{{ form.program.id_for_label }}">Program:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.program}}</div>
+                                </div>
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.course.errors }}</span>
+                                    <div class="col-md-3  text-capitalize"><label for="{{ form.course.id_for_label }}">Course:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.course }}</div>
+                                </div>
+                                <div class="row fieldWrapper mb-2">
+                                    <span class="mx-auto" style="list-style-type:none;color:red">{{ form.semester.errors }}</span>
+                                    <div class="col-md-3  text-capitalize"><label for="{{ form.semester.id_for_label }}">Semester:</label></div>
+                                    <div class="col-md-8 mr-4">{{ form.semester }}</div>
+                                </div>
+                                    <input type="submit" class="btn btn-primary mb-3" value="Create" style="margin-left: 45%;"/>
+                            </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        {% endif %}
+    </div>
+{% endblock %}

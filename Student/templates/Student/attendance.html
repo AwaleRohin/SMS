@@ -1,0 +1,43 @@
+{#{% extends 'Student/layout.html' %}#}
+{##}
+{#{% block content %}#}
+{#    <div class="container mx-auto mt-4">#}
+{#            <div class="row mx-auto">#}
+{#                <div class="card w-50 text-center mx-auto mt-5 mb-5">#}
+{#                    <div class="card-header">#}
+{#                        <h4>Student Attendance</h4>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                    <form method="POST" class="post-form form"  action='/attendance/' enctype="multipart/form-data">#}
+{#                        {% if students %}#}
+{#                            <form>#}
+{#                            {% csrf_token %}#}
+{#                                  <div class="form-group">#}
+{#                                      <label for="exampleFormControlInput1">Date</label>#}
+{#                                      <input type="date" class="form-control" id="exampleFormControlInput1">#}
+{#                                  </div>#}
+{#                                  <div class="form-group">#}
+{#                                        <label for="exampleFormControlSelect1">Students</label>#}
+{#                                        <select multiple class="form-control" id="exampleFormControlSelect2">#}
+{#                                            {% for student in students %}#}
+{#                                              <option>{{ student.first_name }} {{ student.last_name }}</option>#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+{#                                  </div>#}
+{#                                  <div class="form-group">#}
+{#                                        <label for="exampleFormControlSelect2">Course</label>#}
+{#                                        <select class="form-control" id="exampleFormControlSelect2">#}
+{#                                            {% for course in courses %}#}
+{#                                              <option>{{ course.name }}</option>#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+{#                                  </div>#}
+{#                                <button type="submit" class="btn btn-info" value="create" name="create">Submit</button>#}
+{#                                </form>#}
+{#                        {% endif %}#}
+{#                    </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#    </div>#}
+{#{% endblock %}#}

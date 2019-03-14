@@ -1,0 +1,61 @@
+{% extends 'Student/layout.html' %}
+
+{% block content %}
+<div class="card m-5 mx-auto w-50">
+    <div class="card-header text-center">
+        <h4>Registration Form</h4>
+    </div>
+    <div class="card-body">
+        <form role="form" class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+{#        <div class="form-group">#}
+{#            {% for field in form %}#}
+{#                <div class="fieldWrapper">#}
+{#                <div class="input-group mb-2">#}
+{#                    <div class="col-md-3 ml-2 text-capitalize">{{ field.name }}:</div>#}
+{#                    <div class="col-md-8"><input class="form-control" name="{{ field.name }}"/></div>#}
+{#                    <span class="mx-auto" style="list-style-type:none;color:red">{{ field.errors | striptags }}</span>#}
+{#                </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#            <input type="submit" class="btn btn-primary mx-auto" value="Register" />#}
+{#        </div>#}
+        <div class="form-group">
+        {{ form.non_field_errors }}
+        <div class="row fieldWrapper mb-2">
+            <span class="mx-auto" style="list-style-type:none;color:red">{{ form.username.errors }}</span>
+            <div class="col-md-3 text-capitalize"><label for="{{ form.username.id_for_label }}">Username:</label></div>
+            <div class="col-md-8 mr-4">{{ form.username }}</div>
+        </div><div class="row fieldWrapper mb-2">
+            <span class="mx-auto" style="list-style-type:none;color:red">{{ form.last_name.errors }}</span>
+            <div class="col-md-3 text-capitalize"><label for="{{ form.last_name.id_for_label }}">Last Name:</label></div>
+            <div class="col-md-8 mr-4">{{ form.last_name }}</div>
+        </div>
+        <div class="row fieldWrapper mb-2">
+            <span class="mx-auto" style="list-style-type:none;color:red">{{ form.first_name.errors }}</span>
+            <div class="col-md-3  text-capitalize"><label for="{{ form.first_name.id_for_label }}">First Name:</label></div>
+            <div class="col-md-8 mr-4">{{ form.first_name }}</div>
+        </div>
+
+        <div class="row fieldWrapper mb-2">
+            <span class="mx-auto" style="list-style-type:none;color:red">{{ form.email.errors }}</span>
+            <div class="col-md-3 text-capitalize"><label for="{{ form.email.id_for_label }}">Email address:</label></div>
+            <div class="col-md-8 mr-4">{{ form.email }}</div>
+        </div>
+        <div class="row fieldWrapper mb-2">
+            <span class="mx-auto" style="list-style-type:none;color:red">{{ form.password1_myself.errors }}</span>
+            <div class="col-md-3  text-capitalize"><label for="{{ form.cc_myself.id_for_label }}">Password:</label></div>
+            <div class="col-md-8 mr-4">{{ form.password1}}</div>
+        </div>
+        <div class="row fieldWrapper mb-2">
+            <span class="mx-auto" style="list-style-type:none;color:red">{{ form.password2_myself.errors }}</span>
+            <div class="col-md-3  text-capitalize"><label for="{{ form.cc_myself.id_for_label }}">Confirm Password:</label></div>
+            <div class="col-md-8 mr-4">{{ form.password2 }}</div>
+        </div>
+            <input type="submit" class="btn btn-primary mb-3" value="Register" style="margin-left: 45%;"/>
+    </div>
+        </form>
+        <p class="text-center">If you already have an account <a href="{% url 'login' %}" target="blank"><strong>login</strong></a> instead.</p>
+    </div>
+</div>
+{% endblock %}
